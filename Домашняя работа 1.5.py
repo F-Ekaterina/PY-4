@@ -11,22 +11,20 @@ students_list = [
          {'имя' : 'Екатерина Федорова' , 'gender' : 'жен', 'experience' : True , 'homeworks' : [9 , 9 , 8 , 7 ,6 ], 'exam' : 8}
       ]
 
-students=['Сергей Иванов', 'Никита Петров', 'Михаил Дягилев', 'Вячеслав Марков',\
-          'Сергей Клименок', 'Олеся Шеметова', 'Ольга Кайзер', 'Евгения Васильева', \
-          'Александр Серга', 'Екатерина Федорова']
-
-quantity_students = len(students)
-quantity_homeworks = 5
-
-print('_____________________________________', '\n')
 
 
 def middle_rating_group():
+    students = []
+    homeworks = []
     homework_ratings = []
     exam_rating = []
     for student in students_list:
+        students.append(student['имя'])
+        quantity_students = len(students)
+        homeworks += student['homeworks']
+        quantity_homeworks = len(homeworks)
         homework_ratings.append(sum(student['homeworks']))
-        middle_rating_homeworks = sum(homework_ratings) / (quantity_homeworks * quantity_students)
+        middle_rating_homeworks = sum(homework_ratings) / (quantity_homeworks)
         exam_rating.append(student['exam'])
         middle_rating_exam = sum(exam_rating) / quantity_students
     print('средняя оценка за домашние задания по группе:', 'X=', middle_rating_homeworks)
@@ -79,10 +77,10 @@ def middle_ball_experience():
     print('средняя оценка за дз, студенты без опыта: G=', middle_rating_not_experience)
     print('средняя оценка за экзамен, студенты с опытом: F=', round(middle_exam_experience, 2))
     print('cpедняя оценка за экзамен, студенты без опыта: H=', middle_exam_not_experience)
-    return
 
 
-def min_max_rating():
+
+def max_rating():
     score_table = []
     name_table = []
     for student in students_list:
@@ -92,11 +90,8 @@ def min_max_rating():
     #print(score_table)
     #print(name_table)
     for name, rating in zip(name_table, score_table):
-        min_rating=min(score_table)
         max_rating=max(score_table)
-        if rating== min_rating:
-            print('Худший студент', name, 'с интегральной оценкой Z=', min_rating)
-        elif rating== max_rating:
+        if rating== max_rating:
             print('Лучший студент', name, 'c интегральной оценкой Z=', max_rating)
 
 def main():
@@ -105,7 +100,7 @@ def main():
   XY- среднюю оценку за домашние задания и за экзамен по всем группе
   ABCD- средняя оценка за домашние работы и за экзамен в зависимости от пола
   EFGH- средняя оценка за домашние работы и за экэкзамен в зависимости от наличия опыта
-  Z- лучшие/ худшие студенты''')
+  Z- лучшие студенты''')
         if user_input == 'XY':
             middle_rating_group()
             print('________________', '\n')
@@ -116,7 +111,7 @@ def main():
             middle_ball_experience()
             print('________________', '\n')
         elif user_input == 'Z':
-            min_max_rating()
+            max_rating()
             print('________________','\n')
 
 main()
