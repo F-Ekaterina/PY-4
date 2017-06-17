@@ -5,12 +5,12 @@ from pprint import pprint
 def get_cook_book():
     with open ('cook_book_for_2.2.json', encoding='utf8') as f:
         cook_book=json.load(f)
-        pprint(cook_book)
+       # pprint(cook_book)
     return cook_book
 
 def get_shop_list_by_dishes(person_count, dishes):
     cook_book = get_cook_book()
-    print(cook_book)
+    #print(cook_book)
     shop_list = {}
     for dish in dishes:
         for ingridient in cook_book[dish]:
